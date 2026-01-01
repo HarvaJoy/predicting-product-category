@@ -11,7 +11,6 @@ Usage:
     python predict_category.py --model path/to/model.pkl --vectorizer path/to/vectorizer.pkl
 
 Author: Joyce Harvatovici
-Date: December 2025
 """
 
 import pickle

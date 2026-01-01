@@ -2,10 +2,6 @@
 
 **Automatic Product Categorization Using Machine Learning**
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.2%2B-orange)](https://scikit-learn.org/)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-
 ## 📋 Project Overview
 
 This project implements a machine learning solution to automatically classify products into categories based on their titles. The system is designed for e-commerce platforms that need to quickly and accurately categorize thousands of new products daily, reducing manual work and improving operational efficiency.
@@ -84,42 +80,6 @@ The project uses a comprehensive dataset (`products.csv`) with **38,000+ product
    ```bash
    python predict_category.py
    ```
-
-## 💻 Usage
-
-### Training the Model
-
-```bash
-# Basic training with default settings
-python train_model.py
-
-# Custom data path and output location
-python train_model.py --data data/products.csv --output my_model.pkl
-
-# Adjust test/train split
-python train_model.py --test-size 0.25
-```
-
-### Making Predictions
-
-**Interactive Mode:**
-```bash
-python predict_category.py
-```
-
-Then enter product titles when prompted:
-```
-➜ Samsung Galaxy S21 128GB
-📦 Product: Samsung Galaxy S21 128GB
-🏷️  Predicted Category: Mobile Phones
-✨ Confidence: 98.5%
-```
-
-**Batch Mode:**
-```bash
-python predict_category.py --batch "iPhone 13 Pro" "MacBook Air M2" "Sony WH-1000XM5"
-```
-
 ### Jupyter Notebook Analysis
 
 Open and run the complete analysis notebook:
@@ -134,22 +94,6 @@ The notebook includes:
 - Performance evaluation with visualizations
 - Confusion matrix analysis
 
-## 📁 Project Structure
-
-```
-predicting-product-category/
-├── README.md                   # This file
-├── requirements.txt            # Python dependencies
-├── generate_dataset.py         # Script to generate sample data
-├── train_model.py             # Model training script
-├── predict_category.py        # Prediction script (interactive/batch)
-├── analysis.ipynb             # Complete Jupyter notebook analysis
-├── data/
-│   └── products.csv           # Product dataset
-├── model.pkl                  # Trained model (generated after training)
-├── vectorizer.pkl             # TF-IDF vectorizer (generated after training)
-└── main.py                    # Task description and requirements
-```
 
 ## 🔬 Methodology
 
@@ -209,17 +153,6 @@ Compared multiple algorithms:
 - **matplotlib & seaborn** - Visualization
 - **pickle** - Model serialization
 
-### Model Architecture
-```
-Product Title (Text)
-        ↓
-TF-IDF Vectorization (1000 features, bi-grams)
-        ↓
-Logistic Regression Classifier
-        ↓
-Predicted Category + Confidence Score
-```
-
 ## 🎓 Learning Outcomes
 
 This project demonstrates:
@@ -230,31 +163,8 @@ This project demonstrates:
 - Clear documentation practices
 - Git version control
 
-## 🔮 Future Improvements
-
-1. **Hyperparameter Tuning:** GridSearchCV for optimal parameters
-2. **Deep Learning:** Try BERT or other transformer models
-3. **Multi-feature Integration:** Include merchant rating, views, description
-4. **Real-time API:** Flask/FastAPI REST endpoint
-5. **Model Monitoring:** Track prediction confidence over time
-6. **Active Learning:** Flag low-confidence predictions for review
-
 ## 👥 Author
 
 **Joyce Harvatovici**
 - GitHub: [@HarvaJoy](https://github.com/HarvaJoy)
 - Project: Link Academy - Introduction to Machine Learning with Python
-
-## 📝 License
-
-This project is created for educational purposes as part of the Link Academy Machine Learning course.
-
-## 🙏 Acknowledgments
-
-- Link Academy for the comprehensive ML curriculum
-- scikit-learn documentation and community
-- Open-source Python data science ecosystem
-
----
-
-**Note:** This project was developed as part of Task 3 for the Link Academy Machine Learning course (December 2025).

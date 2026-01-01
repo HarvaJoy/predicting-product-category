@@ -9,13 +9,14 @@ Usage:
     python train_model.py --data data/products.csv --output model.pkl
 
 Author: Joyce Harvatovici
-Date: December 2025
 """
 
 import pandas as pd
 import numpy as np
 import pickle
 import argparse
+import os
+from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -119,12 +120,29 @@ def main():
     
     args = parser.parse_args()
     
+    # Get the script directory
+    script_dir = Path(__file__).parent
+    
+    # Resolve data path relative to script directory if it's a relative path
+    data_path = args.data
+    if not os.path.isabs(data_path):
+        data_path = script_dir / data_path
+    
+    # Resolve output paths relative to script directory if they're relative paths
+    output_path = args.output
+    if not os.path.isabs(output_path):
+        output_path = script_dir / output_path
+    
+    vectorizer_path = 'vectorizer.pkl'
+    if not os.path.isabs(vectorizer_path):
+        vectorizer_path = script_dir / vectorizer_path
+    
     print("="*70)
     print("PRODUCT CATEGORY CLASSIFICATION - MODEL TRAINING")
     print("="*70)
     
     # Load data
-    df = load_data(args.data)
+    df = load_data(str(data_path))
     
     # Prepare features
     X, y = prepare_features(df)
@@ -147,14 +165,14 @@ def main():
     accuracy = evaluate_model(model, vectorizer, X_test, y_test)
     
     # Save model
-    save_model(model, vectorizer, args.output, 'vectorizer.pkl')
+    save_model(model, vectorizer, str(output_path), str(vectorizer_path))
     
     print("\n" + "="*70)
     print("TRAINING COMPLETE!")
     print("="*70)
     print(f"\n✓ Final Model Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
-    print(f"✓ Model saved to: {args.output}")
-    print(f"✓ Vectorizer saved to: vectorizer.pkl")
+    print(f"✓ Model saved to: {output_path}")
+    print(f"✓ Vectorizer saved to: {vectorizer_path}")
     print("\nYou can now use predict_category.py to make predictions!")
 
 
